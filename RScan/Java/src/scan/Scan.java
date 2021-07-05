@@ -63,7 +63,9 @@ public class Scan {
         
         Core.multiply(kernel, new Scalar(127.0, 127.0, 127.0), kernel);
         
-        Imgproc.cvtColor(filtered,filtered,Imgproc.COLOR_RGBA2RGB);
+        if(filtered.channels()-kernel.channels()==1){
+            Imgproc.cvtColor(filtered, filtered,Imgproc.COLOR_BGRA2BGR);
+        }
         
         Core.add(filtered, kernel, filtered);
 
